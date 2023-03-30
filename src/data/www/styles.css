@@ -1,0 +1,20 @@
+.formulario_input-error { /*clase oculpa*/
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+}
+.formulario_input-error-activo { /*se activa*/
+    display: block;
+}
+.formulario_mensaje {
+    display: none;
+}
+.formulario_mensaje-activo {
+    display: block;
+}
+.time {
+    display: none;
+}
+.time-activo {
+    display: block;
+}

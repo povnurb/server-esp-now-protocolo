@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<!-- BEGIN HEAD-->
+<head>
+    <meta charset="UTF-8" />
+    <title>#id# | Principal </title> <!--cambiar el nombre de la central-->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="www/logot.gif" type="image/x-icon">
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="www/bootstrap.css" />
+    <link rel="stylesheet" href="www/main.css" />
+    <link rel="stylesheet" href="www/theme.css" />
+    <link rel="stylesheet" href="www/MoneAdmin.css" />
+    <link rel="stylesheet" href="www/font-awesome.css" />
+    <link rel="stylesheet" href="www/bootstrap-switch.css" />
+    <link rel="stylesheet" href="www/sweetalert2.min.css" />
+    <link rel="stylesheet" href="www/styles.css" />
+    <link rel="stylesheet" href="www/social.css" />
+    <!--END GLOBAL STYLES -->
+    <!-- PAGE LEVEL STYLES -->
+    <link href="www/layout2.css" rel="stylesheet" />
+    <!-- END PAGE LEVEL STYLE -->
+</head>
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
+
+<body class="padTop53 ">
+     <!-- MAIN WRAPPER -->
+    <div id="wrap">
+         <!-- HEADER SECTION -->
+        <div id="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+                <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                    <i class="icon-align-justify"></i>
+                </a>
+                <!-- LOGO SECTION -->
+                <header class="navbar-header">
+                    <a href="/" class="navbar-brand">
+                    <img src="www/logot.gif" alt="TELMEX" style="max-height: 55px;"/></a>
+                    <h3 class="mb-0 " id="sys_time">#sys_time#</h3> 
+                </header>
+            </nav>
+        </div>
+        <!-- END HEADER SECTION -->
+        <!-- MENU SECTION -->
+       <div id="left">
+            <div class="media user-media well-small">
+                <br />
+                <div class="media-body">
+                    <img src="www/logot.gif" alt="TELMEX" style="max-height: 55px;"/>
+                    <h2 class="media-heading"> #id# </h2>
+                    <ul class="list-unstyled user-info">
+                        <li>
+                             <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online
+                        </li>
+                    </ul>
+                </div>
+                <br />
+            </div>
+            <ul id="menu" class="collapse">
+                <li class="panel active">
+                    <a href="/">
+                        <i class="icon-home"></i> Panel principal
+                    </a>                   
+                </li>
+                <li class="panel">
+                    <a href="esp-wifi" >
+                        <i class="icon-signal"></i> WIFI
+                    </a>                   
+                </li>
+                <li class="panel">
+                    <a href="esp-mqtt">
+                        <i class="icon-sitemap"></i> MQTT
+                    </a>                   
+                </li>
+                <li class="panel">
+                    <a href="esp-time">
+                        <i class="icon-time"></i> RELOJ
+                    </a>                   
+                </li>
+                <li class="panel ">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
+                        <i class="icon-folder-open"> </i> Administrar    
+                        <span class="pull-right">
+                          <i class="icon-angle-left"></i>
+                    </a>
+                    <ul class="collapse" id="component-nav">
+                        <li class=""><a href="esp-device"><i class="icon-angle-right"></i> Dispositivo </a></li>
+                        <li class=""><a href="esp-restore"><i class="icon-angle-right"></i> Ajustes de fábrica </a></li>
+                        <li class=""><a href="esp-restart"><i class="icon-angle-right"></i> Reinicio </a></li>
+                        <li class=""><a href="esp-admin"><i class="icon-angle-right"></i> Contraseña </a></li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <a href="esp-logout">
+                        <i class="icon-signout"></i> Salir
+                    </a> 
+                </li>                  
+            </ul>
+        </div>
+        <!--END MENU SECTION -->
+        <!--PAGE CONTENT -->
+        <div id="content">
+            <div class="inner" style="min-height:400px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Estado del Dispositivo</h2> 
+                    </div>
+                </div>
+                <!--BLOCK SECTION -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style="text-align: center;">
+                            <a class="quick-btn">
+                                <i class="icon-fire icon-2x"></i>
+                                <span>Temp. Sala</span>
+                                <span class="label btn-metis-2" id="tempC">#tempC# °C</span>
+                            </a>
+                            <a class="quick-btn">
+                                <i class="icon-tint icon-2x"></i>
+                                <span>H. Sala</span>
+                                <span class="label btn-metis-2" id="Humedad">#humedad# %</span>
+                            </a>
+                            <a class="quick-btn">
+                                <i class="icon-laptop icon-2x"></i>
+                                <span>Temp. CPU</span>
+                                <span class="label btn-metis-2" id="temp_cpu">#temp_cpu# °C</span>
+                            </a>
+                            <a class="quick-btn">
+                                <i class="icon-retweet icon-2x"></i>
+                                <span>Reinicios</span>
+                                <span class="label btn-metis-2">#bootCount#</span>
+                            </a>
+                            <a class="quick-btn">
+                                <i class="icon-time icon-2x"></i>
+                                <span>T. Activo</span>
+                                <span class="label btn-metis-2" id="active">#time_active#</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <br><code>Nota: Para obtener datos recientes de la humedad en la sala actualiza la pagina (F5)</code>
+            <hr>
+            <!--Alarmas Inicio maquetado-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Alarmas en #id#</h2> 
+                </div>
+            </div><code>Aviso: Estas alarmas se activa con voltaje a 0 volts (Tierra)</code>
+            <!--azul btn-dropbox-->
+            <a class="btn btn-block btn-social btn-dropbox">
+            <i>#</i> <div class="col-lg-6">ALARMA</div><div class="col-lg-3">PRESENTE</div><div class="col-lg-3">CLAREADA</div>
+            </a>
+            <!--verde btn-success-->
+            <!--rojo btn-danger-->
+            <a class="btn btn-block btn-social btn-success" id="A_TEMP">
+                <!--<i class="" id="cat"></i> <div class="col-lg-4">#alarma0#</div><div class="col-lg-4" id="cat_on" ></div><div class="col-lg-4" id="cat_off"></div>-->
+                <!--personalizado--><i class="" id="cat"></i> <div class="col-lg-6">FALLA RECTIFICADOR PLANTA BAJA MEI</div><div class="col-lg-3" id="cat_on" ></div><div class="col-lg-3" id="cat_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="PUERTA">
+                <!--<i class="" id="cpa"></i> <div class="col-lg-4">#alarma1#</div><div class="col-lg-4" id="cpa_on"></div><div class="col-lg-4" id="cpa_off"></div>-->
+                <!--personalizado--><i class="" id="cpa"></i> <div class="col-lg-6">DESCARGA DE BATERIAS SALA OPERTELES</div><div class="col-lg-3" id="cpa_on"></div><div class="col-lg-3" id="cpa_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="F_COMPRE">
+                <!--<i class="" id="cfc"></i> <div class="col-lg-4">#alarma2#</div><div class="col-lg-4" id="cfc_on"></div><div class="col-lg-4" id="cfc_off"></div>-->
+                <!--personalizado--><i class="" id="cfc"></i> <div class="col-lg-6">BAJO VOLTAJE DE BATERIAS SALA OPERTELES</div><div class="col-lg-3" id="cfc_on"></div><div class="col-lg-3" id="cfc_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="SENSOR_MOV">
+                <!--<i class="" id="csm"></i> <div class="col-lg-4">#alarma3#</div><div class="col-lg-4" id="csm_on"></div><div class="col-lg-4" id="csm_off"></div>-->
+                <!--personalizado--><i class="" id="csm"></i> <div class="col-lg-6">GRUPO ELECTROGENO BLOQUEADO</div><div class="col-lg-3" id="csm_on"></div><div class="col-lg-3" id="csm_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="F_RED">
+                <!--<i class="" id="cfrc"></i> <div class="col-lg-4">#alarma4#</div><div class="col-lg-4" id="cfrc_on"></div><div class="col-lg-4" id="cfrc_off"></div>-->
+                <!--personalizado--><i class="" id="cfrc"></i> <div class="col-lg-6">ALTA TEMPERATURA EN SALA PTTI IGL</div><div class="col-lg-3" id="cfrc_on"></div><div class="col-lg-3" id="cfrc_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="G_E_OPER">
+                <!--<i class="" id="cgeo"></i> <div class="col-lg-4">#alarma5#</div><div class="col-lg-4" id="cgeo_on"></div><div class="col-lg-4" id="cgeo_off"></div>-->
+                <!--personalizado--><i class="" id="cgeo"></i> <div class="col-lg-6">FALLA DE COMPRESOR DE CLIMAS</div><div class="col-lg-3" id="cgeo_on"></div><div class="col-lg-3" id="cgeo_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="G_E_BLO">
+                <!--<i class="" id="cgeb"></i> <div class="col-lg-4">#alarma6#</div><div class="col-lg-4" id="cgeb_on"></div><div class="col-lg-4" id="cgeb_off"></div>-->
+                <!--personalizado--><i class="" id="cgeb"></i> <div class="col-lg-6">GRUPO ELECTROGENO EN OPERACION</div><div class="col-lg-3" id="cgeb_on"></div><div class="col-lg-3" id="cgeb_off"></div>
+            </a>
+            <a class="btn btn-block btn-social btn-success" id="F_REC">
+                <!--<i class="" id="cfr"></i> <div class="col-lg-4">#alarma7#</div><div class="col-lg-4" id="cfr_on"></div><div class="col-lg-4" id="cfr_off"></div>-->
+                <!--personalizado--><i class="" id="cfr"></i> <div class="col-lg-6">FALLA DE RED CFE</div><div class="col-lg-3" id="cfr_on"></div><div class="col-lg-3" id="cfr_off"></div>
+            </a>
+            <code>Nota: Todas estas alarmas se pueden activar al mismo tiempo con el boton D35 de la tarjeta </code>
+            <hr>
+                <!--END BLOCK SECTION -->
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="icon-info-sign"></i> Información General
+                        <span class="badge pull-right">#id# / #serie#</span>
+                    </div>
+                    <div class="panel-body">
+                            <h3>Inalámbrico</h3>
+                            <div><span class="label label-primary">Estado WiFi:</span><span id="wifi_status">#wifi_status#</span></div>
+                            <div><span class="label label-primary">SSID WiFi:</span><span>#wifi_ssid#</span></div>
+                            <div><span class="label label-primary">IP WiFi:</span><span>#wifi_ip#</span></div>
+                            <div><span class="label label-primary">MAC WiFi:</span><span>#wifi_mac#</span></div>
+                            <hr>
+                            <h3>Broker MQTT</h3>
+                            <div><span class="label label-primary">Estado MQTT:</span><span id="mqtt_status">#mqtt_status#</span></div>
+                            <div><span class="label label-primary">Página de pruebas MQTT:</span><a href="http://www.hivemq.com/demos/websocket-client/" target="_blank">http://www.hivemq.com/demos/websocket-client/</a></div>
+                            <div><span class="label label-primary">Servidor MQTT:</span><span id="mqtt_server">#mqtt_server#</span></div>
+                            <div><span class="label label-primary">Usuario:</span><span>#mqtt_user#</span></div>
+                            <div><span class="label label-primary">Cliente MQTT:</span><span>#mqtt_id#</span></div>
+                            <div><span class="label label-primary">Publicación:</span><span>TLMX/#id#/#</span></div>
+                            <div><span class="label label-primary">Suscribe:</span><span>TLMX/#id#/command</span></div>
+                            <div><span class="label label-primary">Ejemplo JSON:</span><span>{"protocol":"MQTT","output":"RELAY1","value": true }</span></div>
+                            <hr>
+                            <h3>Información General</h3>
+                            <div><span class="label label-primary">Identificación:</span><span>#id#</span></div>
+                            <div><span class="label label-primary">Número de Serie:</span><span>#serie#</span></div>
+                            <div><span class="label label-primary">mDNS Url:</span><a href="http://#id#.local/" target="_blank">http://#id#.local/</a></div>
+                            <div><span class="label label-primary">Dirección IP del Cliente:</span><span>#clientIP#</span></div>
+                            <div><span class="label label-primary">Navegador del Cliente:</span><span>#userAgent#</span></div>
+                            <div><span class="label label-primary">Version del Firmware:</span><span>#firmware#</span></div>
+                            <div><span class="label label-primary">SDK:</span><span>#sdk#</span></div>
+                            <div><span class="label label-primary">Versión del Hardware:</span><span>#hardware#</span></div>
+                            <div><span class="label label-primary">CPU FREQ:</span><span>#cpu_freq# MHz</span></div>
+                            <div><span class="label label-primary">RAM SIZE:</span><span>#ram_size# MB</span></div>
+                            <div><span class="label label-primary">FLASH SIZE:</span><span>#flash_size# MB</span></div>
+                            <div><span class="label label-primary">Modiificado por:</span><span>povnurb@hotmail.com</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <!--END PAGE CONTENT -->
+          <!-- RIGHT STRIP  SECTION -->
+        <div id="right">
+            <div class="well well-small">
+                <span>Señal WIFI</span><span class="pull-right"><small id="wifi_label">#wifi_percent#%</small></span>
+                <div class="progress mini">
+                    <div class="progress-bar progress-bar-info" id="wifi_Signal" style="width: #wifi_percent#%"></div>
+                </div>
+                <span>SPIFFS Usada</span><span class="pull-right"><small id="spiffs_label">#spiffs_used#%</small></span>
+                <div class="progress mini">
+                    <div class="progress-bar progress-bar-success" id="spiffs_Signal" style="width: #spiffs_used#%"></div>
+                </div>
+                <span>RAM Disponible</span><span class="pull-right"><small id="ram_label">#ram_available#%</small></span>
+                <div class="progress mini">
+                    <div class="progress-bar progress-bar-warning" id="ram_Signal" style="width: #ram_available#%"></div>
+                </div>
+            </div>
+            <div class="well well-small">
+                <span>PUERTA </span><span class="pull-right success"><small class="label #label1#" id="RELAY1_Status">#Statustext1#</small></span>
+                <div class="make-switch" data-on="prymary" data-off="info">
+                    <input type="checkbox" #relay1# id="RELAY1" onchange="relay(this);">
+                </div>
+                <br>
+                <br>
+                <span>ZUMBADOR</span><span class="pull-right success"><small class="label #label2#" id="RELAY2_Status">#Statustext2#</small></span>
+                <div class="make-switch" data-on="prymary" data-off="info">
+                    <input type="checkbox" #relay2# id="RELAY2" onchange="relay(this);">
+                </div>
+                <br>
+            </div><code>Aviso: Requiere contraseña</code>
+        </div>
+         <!-- END RIGHT STRIP  SECTION -->
+    </div>
+     <!--END MAIN WRAPPER -->
+   <!-- FOOTER -->
+    <div id="footer">
+        <p>&copy;  COM COATZA ENERO &nbsp;2023 &nbsp;</p>
+    </div>
+    <!--END FOOTER -->
+     <!-- GLOBAL SCRIPTS -->
+    <script src="www/jquery-2.0.3.min.js"></script>
+    <script src="www/bootstrap.min.js"></script>
+    <script src="www/modernizr-2.6.2.min.js"></script>
+    <script src="www/bootstrap-switch.min.js"></script>
+    <script src="www/sweetalert2.min.js"></script>
+    <script src="www/scripts.js"></script>
+    <!-- END GLOBAL SCRIPTS -->
+</body>
+    <!-- END BODY-->
+</html>

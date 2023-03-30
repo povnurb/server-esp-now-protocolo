@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- BEGIN HEAD-->
+<head>
+    <meta charset="UTF-8" />
+    <title>#id# | Fecha-hora </title>
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="www/logot.gif" type="image/x-icon">
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="www/bootstrap.css" />
+    <link rel="stylesheet" href="www/main.css" />
+    <link rel="stylesheet" href="www/theme.css" />
+    <link rel="stylesheet" href="www/MoneAdmin.css" />
+    <link rel="stylesheet" href="www/font-awesome.css" />
+    <link rel="stylesheet" href="www/bootstrap-switch.css" />
+    <link rel="stylesheet" href="www/sweetalert2.min.css" />
+    <link rel="stylesheet" href="www/styles.css" />
+    <link rel="stylesheet" href="www/styles.css">
+</head>
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
+<body class="padTop53" onload="loadTime()">
+    <!-- MAIN WRAPPER -->
+    <div id="wrap">
+        <!-- HEADER SECTION -->
+        <div id="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+                <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                    <i class="icon-align-justify"></i>
+                </a>
+                <!-- LOGO SECTION -->
+                <header class="navbar-header">
+                    <a href="/" class="navbar-brand">
+                    <img src="www/logot.gif" alt="TELMEX" style="max-height: 55px;"/></a>
+                    <h3 class="mb-0 " id="sys_time">#sys_time#</h3> 
+                </header>
+                <div class="col-lg-8 col-md-12 col-sm-12 text-lg-right">
+                    <!--ADMIN SETTINGS SECTIONS -->
+                    <div class="center">
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="esp-admin"><i class="icon-user"></i> #mqtt_user# </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="esp-logout"><i class="icon-signout"></i> Salir </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--END ADMIN SETTINGS -->
+                </div>
+                <!-- END LOGO SECTION -->
+                
+            </nav>
+        </div>
+        <!-- END HEADER SECTION -->
+        <!-- MENU SECTION -->
+       <div id="left">
+        <div class="media user-media well-small">
+            <br />
+            <div class="media-body">
+                <img src="www/logot.gif" alt="TELMEX" style="max-height: 55px;"/>
+                <h2 class="media-heading"> #id# </h2>
+                <ul class="list-unstyled user-info">
+                    <li>
+                         <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online
+
+                    </li>
+                </ul>
+            </div>
+            <br />
+        </div>
+        <ul id="menu" class="collapse">
+            <li class="panel">
+                <a href="/" >
+                    <i class="icon-home"></i> Panel principal
+                </a>                   
+            </li>
+            <li class="panel">
+                <a href="esp-wifi" >
+                    <i class="icon-signal"></i> WIFI
+                </a>                   
+            </li>
+            <li class="panel">
+                <a href="esp-mqtt" >
+                    <i class="icon-sitemap"></i> MQTT
+                </a>                   
+            </li>
+            <li class="panel active">
+                <a href="esp-time">
+                    <i class="icon-time"></i> RELOJ
+                </a>                   
+            </li>
+            <li class="panel active">
+                <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
+                    <i class="icon-folder-open"> </i> Administrar    
+                    <span class="pull-right">
+                      <i class="icon-angle-left"></i>
+                </a>
+                <ul class="collapse" id="component-nav">
+                    <li class=""><a href="esp-device"><i class="icon-angle-right"></i> Dispositivo </a></li>
+                    <li class=""><a href="esp-restore"><i class="icon-angle-right"></i> Ajustes de fábrica </a></li>
+                    <li class=""><a href="esp-restart"><i class="icon-angle-right"></i> Reinicio </a></li>
+                    <li class=""><a href="esp-admin"><i class="icon-angle-right"></i> Contraseña </a></li>
+                </ul>
+            </li>
+            <li class="panel">
+                <a href="esp-logout" >
+                    <i class="icon-signout"></i> Salir
+                </a> 
+            </li>                  
+        </ul>
+    </div>
+    <!--END MENU SECTION -->
+        <!--PAGE CONTENT -->
+            <div id="content">
+                <div class="inner" style="min-height:400px;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 id="page" >Configuración Fecha y Hora</h2> <!-- Cambiar a PTTI HGO-->
+                    </div>
+                        <br />
+                <!--END BLOCK SECTION -->
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-calendar"></i> Configuraciones de la Fecha y Hora
+                                <span class="badge pull-right">#id# / #serie#</span>
+                            </div>           
+                            <div class="panel-body">
+                                        <form method="post" name="esp-time" action="esp-time" method="POST" id="form">
+                                            <input type="hidden" id="time_hr" value="#time_hr#"/> 
+                                            <input type="hidden" id="time_mn" value="#time_mn#"/> 
+                                            <input type="hidden" id="time_sc" value="#time_sc#"/>
+                                            <input type="hidden" id="time_zhoraria" value="#time_zhoraria#"/> 
+                                            <input type="hidden" id="time_ajuste" value="#time_ajuste#"/>
+
+                                            <div class="form-group "> 
+                                                <label for="" class="text-secondary">Ajustar Hora:</label><br>
+                                                <div class="input-group mb-2">
+                                                    <div class="col-lg-6 col-md-12"> 
+                                                        <label class="fancy-radio custom-color-green"> 
+                                                            <input name="time_ajuste" value="0" type="radio" #time_ajuste_0# 
+                                                                data-div_on="manual" data-div_off="auto"
+                                                                onchange="auto_man(this)">
+                                                            <span><i></i>Manualmente</span> 
+                                                        </label> 
+                                                        <label class="fancy-radio custom-color-green"> 
+                                                            <input name="time_ajuste" value="1" type="radio" data-div="auto" #time_ajuste_1# 
+                                                                data-div_on="auto" data-div_off="manual" 
+                                                                onchange="auto_man(this)">
+                                                            <span><i></i>Obtener automáticamente desde Internet</span>
+                                                        </label> 
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="time-activo" id="manual">
+                                                <div class="form-group"> 
+                                                    <label for="time_date" class="text-secondary">Fecha ( DD-MM-YYYY ):</label><br>
+                                                    <div class="input-group mb-3"> 
+                                                        <input type="text" class="form-control mqtt" id="time_date" name="time_date" placeholder="DD-MM-YYYY" value="#time_date#" aria-describedby="basic-addon1"> 
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-12"> 
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="input-group-1 col-lg-1 mb-3"> 
+                                                            <select class="custom-select" id="time_h" name="time_h"></select><span>Hr.</span>
+                                                        </div>
+                                                        <div class="input-group-sm col-lg-1 mb-3" > 
+                                                            <select class="custom-select" id="time_m" name="time_m"></select><span>Min.</span>
+                                                        </div>                                                       
+                                                        <!--<div class="input-group-1 col-lg-1 mb-3">
+                                                            <select class="custom-select" id="time_s" name="time_s"></select><span>Seg.</span>
+                                                        </div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="time" id="auto">
+                                                <div class="form-group col-lg-6"> 
+                                                    <label for="time_z_horaria" class="text-secondary">Zona Horaria:</label><br>
+                                                    <div class="input-group mb-3"> 
+                                                        <select class="custom-select" id="time_z_horaria" name="time_zhoraria">
+                                                            <option value="-12.00">(GMT-12:00) Enewetak, Kwajalein </option>
+                                                            <option value="-11.00">(GMT-11:00) Islas Midway, Samoa </option>
+                                                            <option value="-10.00">(GMT-10:00) Hawái</option>
+                                                            <option value="-9.00">(GMT-09:00) Alaska</option>
+                                                            <option value="-8.00">(GMT-08:00) Hora del Pacífico</option>
+                                                            <option value="-7.00">(GMT-07:00) Hora de las Montañas Rocosas (EE.UU. Y Canadá)</option>
+                                                            <option value="-6.00">(GMT-06:00) Hora Central (México, EE.UU. y Canadá)</option>
+                                                            <option value="-5.00">(GMT-05:00) Hora del Este (EE.UU. y Canadá)</option>
+                                                            <option value="-4.50">(GMT-04:30) Caracas</option>
+                                                            <option value="-4.00">(GMT-04:00) Hora del Atlántico (Canadá)</option>
+                                                            <option value="-3.50">(GMT-03:30) Terranova</option>
+                                                            <option value="-3.00">(GMT-03:00) Brasilia, Buenos Aires </option>
+                                                            <option value="-2.00">(GMT-02:00) Atlántico Central</option>
+                                                            <option value="-1.00">(GMT-01:00) Azores, Islas de Cabo Verde</option>
+                                                            <option value="0.00">(GMT) Hora Media de Greenwich: Dublín, Londres</option>
+                                                            <option value="1.00">(GMT+01:00) Berlín, Estocolmo, Roma, Berna, Bruselas</option>
+                                                            <option value="2.00">(GMT+02:00) Atenas, Helsinki, Europa del Este, Israel</option>
+                                                            <option value="3.00">(GMT+03:00) Bagdad, Kuwait, Nairobi, Riad, Moscú</option>
+                                                            <option value="3.50">(GMT+03:30) Teherán</option>
+                                                            <option value="4.00">(GMT+04:00) Abu Dabi, Mascate, Kazán, Volgogrado</option>
+                                                            <option value="4.50">(GMT+04:30) Kabul</option>
+                                                            <option value="5.00">(GMT+05:00) Islamabad, Karachi, Ekaterimburgo</option>
+                                                            <option value="5.50">(GMT+05:30) Madrás, Calcuta, Mumbai, Nueva Delhi </option>
+                                                            <option value="5.75">(GMT+05:45) Katmandú</option>
+                                                            <option value="6.00">(GMT+06:00) Alma-Ata, Dhaka</option>
+                                                            <option value="6.50">(GMT+06:30) Rangún</option>
+                                                            <option value="7.00">(GMT+07:00) Bangkok, Yakarta, Hanói </option>
+                                                            <option value="8.00">(GMT+08:00) Pekín, Hong Kong, Perth, Singapur</option>
+                                                            <option value="9.00">(GMT+09:00) Tokio, Osaka, Sapporo, Seúl, Yakutsk</option>
+                                                            <option value="9.50">(GMT+09:30) Adelaida</option>
+                                                            <option value="10.00">(GMT+10:00) Brisbane, Guam, Canberra, Melbourne, Sídney</option>
+                                                            <option value="11.00">(GMT+11:00) Magadan, Islas Salomón, Nueva Caledonia </option>
+                                                            <option value="12.00">(GMT+12:00) Fuji, Kamchatka, Auckland </option>
+                                                            <option value="13.00">(GMT+13:00) Nukualofa</option>
+                                                        </select> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6"> 
+                                                    <label for="time_server" class="text-secondary">Servidor NTP:</label><br>
+                                                    <div class="input-group mb-3"> 
+                                                        <input type="text" class="form-control" id="time_server" name="time_server" value="#time_server#" placeholder="Ejemplo: time.nist.gov">
+                                                    </div>
+                                                </div>
+
+                                            </div><br>
+                                            <button type="submit" class="btn btn-success mb-2">
+                                                <i class="fa fa-floppy-o"></i> <span> Guardar</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>                     
+                        </div>
+                    </div>
+                </div>
+                <!--END PAGE CONTENT -->
+                <!-- END RIGHT STRIP  SECTION -->
+            </div>
+            <!--END MAIN WRAPPER -->
+   <!-- FOOTER -->
+    <div id="footer">
+        <p>&copy;  COM COATZA ENERO &nbsp;2023 &nbsp;</p>
+    </div>
+    <!--END FOOTER -->
+        </div>
+         <!-- GLOBAL SCRIPTS -->
+         <script src="www/jquery-2.0.3.min.js"></script>
+        <script src="www/bootstrap.min.js"></script>
+        <script src="www/modernizr-2.6.2.min.js"></script>
+        <script src="www/bootstrap-switch.min.js"></script>
+        <script src="www/sweetalert2.min.js"></script>
+        <script src="www/scripts.js"></script>
+        <!-- END GLOBAL SCRIPTS -->
+</body>
+
+</html>
