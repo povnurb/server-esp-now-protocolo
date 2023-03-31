@@ -32,6 +32,8 @@ typedef struct struct_message {
     float temp;     //Temperatura de la sala
     float hum;      //humedad de la sala
     float readingId;  //numero de envio ya no ahora es señal RSSI
+    float min;
+    float max;
 } struct_message;
 
 struct_message incomingReadings; //es una instancia de la estructura del mensaje que se recibe
@@ -39,7 +41,6 @@ struct_message incomingReadings; //es una instancia de la estructura del mensaje
 StaticJsonDocument<220> board; //verificar con mas capacidad
 
 AsyncWebServer server(80);
-//AsyncWebSocket ws("/ws"); //se instancia ws sobre el puerto ochenta con el /ws
 AsyncEventSource events("/events");
 
 
@@ -48,7 +49,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
     String jsonString;
     // Copies the sender mac address to a string
   char macStr[18];
-  Serial.print("Packet received from: ");
+  Serial.print("[INFO: funciones.hpp] Packet received from: ");
   snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
            mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);
   Serial.println(macStr);
@@ -58,6 +59,8 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   board["temperature"] = incomingReadings.temp;
   board["humidity"] = incomingReadings.hum;
   board["readingId"] = incomingReadings.readingId; //aqui esta llegando la señal wiFi
+  board["min"] = incomingReadings.min; //temperatura min
+  board["max"] = incomingReadings.max; //temperatura maxima
   // la siguiente linea es para int (enteros)
   //board["readingId"] = String(incomingReadings.readingId);
   //hay que serealizar para convertir el objeto en cadena
@@ -68,98 +71,10 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   Serial.printf("t value: %4.2f \n", incomingReadings.temp);
   Serial.printf("h value: %4.2f \n", incomingReadings.hum);
   Serial.printf("readingID value: %4.2f \n", incomingReadings.readingId);
+  Serial.printf("min value: %4.2f \n", incomingReadings.min);
+  Serial.printf("max value: %4.2f \n", incomingReadings.max);
   // para imprimir enteros
   //Serial.printf("readingID value: %d \n", incomingReadings.readingId);
   Serial.println();
+  
 } 
-/*
-// -------------------------------------------------------------------
-// manejor de Eventos del Websocket de la libreria
-// -------------------------------------------------------------------
-void onWsEvent(AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventType type, void * arg, uint8_t *data, size_t len){ 
-	if(type == WS_EVT_CONNECT){
-		Serial.printf("[ INFO ] ws[%s][%u] connect\n", server->url(), client->id());
-		client->printf("{\"ClientID\": %u }", client->id());  //muestra el id del cliente
-		client->ping();  //para mantener la conexion
-	} else if(type == WS_EVT_DISCONNECT){
-		//Serial.printf("ws[%s][%u] disconnect: %u\n", server->url(), client->id());
-	} else if(type == WS_EVT_ERROR){
-		//Serial.printf("ws[%s][%u] error(%u): %s\n", server->url(), client->id(), *((uint16_t*)arg), (char*)data);
-	} else if(type == WS_EVT_PONG){
-		//Serial.printf("ws[%s][%u] pong[%u]: %s\n", server->url(), client->id(), len, (len)?(char*)data:"");
-	} else if(type == WS_EVT_DATA){  //cuando llega una data
-		AwsFrameInfo * info = (AwsFrameInfo*)arg;
-		String msg = "";
-		if(info->final && info->index == 0 && info->len == len){
-			if(info->opcode == WS_TEXT){
-				for(size_t i=0; i < info->len; i++) {
-					msg += (char) data[i];
-				}
-			} else {
-				char buff[3];
-				for(size_t i=0; i < info->len; i++) {
-					sprintf(buff, "%02x ", (uint8_t) data[i]);
-					msg += buff ;
-				}
-			}
-			if(info->opcode == WS_TEXT)
-			   ProcessRequest(client, msg);			
-		} else {
-			//message is comprised of multiple frames or the frame is split into multiple packets
-			if(info->opcode == WS_TEXT){
-				for(size_t i=0; i < len; i++) {
-					msg += (char) data[i];
-				}
-			} else {
-				char buff[3];
-				for(size_t i=0; i < len; i++) {
-					sprintf(buff, "%02x ", (uint8_t) data[i]);
-					msg += buff ;
-				}
-			}
-			Serial.printf("%s\n",msg.c_str());
-
-			if((info->index + len) == info->len){
-				if(info->final){
-					if(info->message_opcode == WS_TEXT)
-					   ProcessRequest(client, msg);
-				}
-			}
-		}
-	}
-}
-
-// -------------------------------------------------------------------
-// Inicializar el Websocket
-// -------------------------------------------------------------------
-void InitWebSockets(){
-	ws.onEvent(onWsEvent);
-	server.addHandler(&ws);
-    Serial.println("[INFO:funciones.hpp ] Servidor WebSocket iniciado");
-}
-// -------------------------------------------------------------------
-// Manejador de ordenes enviada por Websocket
-// -------------------------------------------------------------------
-void ProcessRequest(AsyncWebSocketClient * client, String request){    
-	String command = request;
-    command.trim();
-	
-}
-// -------------------------------------------------------------------
-// Función enviar JSON por Websocket 
-// -------------------------------------------------------------------
-void WsMessage(String msg, String icon, String Type){
-	if(strcmp(Type.c_str(), "info") == 0){
-		String response;
-		StaticJsonDocument<300> doc;
-		doc["id"] = incomingReadings.id;;
-		doc["temperature"] = incomingReadings.temp;;
-		doc["humidity"] = incomingReadings.hum;;
-        doc["readingId"] = String(incomingReadings.readingId);;
-		serializeJson(doc, response);
-		ws.textAll(response);
-		Serial.println(response);
-		Serial.flush(); 
-	}
-}
-*/

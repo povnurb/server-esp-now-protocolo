@@ -5,7 +5,6 @@ const char index_html[] PROGMEM = R"rawliteral(
   <meta charset="UTF-8" />
   <title>Ctral Coatza HGO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="icon" href="data:,">
   <style>
     html {font-family: Arial; display: inline-block; text-align: center;}
@@ -19,6 +18,8 @@ const char index_html[] PROGMEM = R"rawliteral(
     .packet { color: #bebebe; }
     .card.temperature { color: #fd7e14; }
     .card.humidity { color: #1b78e2; }
+    .tmax { color: #fd1414; }
+    .tmin { color: #1378eb; }
   </style>
 </head>
 <body>
@@ -27,17 +28,29 @@ const char index_html[] PROGMEM = R"rawliteral(
   </div>
   <div class="content">
     <div class="cards">
-      <div class="card temperature">
-        <h4><i class="fas fa-thermometer-half"></i> CTI 4° piso - TEMPERATURE</h4><p><span class="reading"><span id="t1"></span> &deg;C</span></p>
-        <h4><i class="fas fa-tint"></i> CTI 4° piso - HUMIDITY</h4><p><span class="reading"><span id="h1"></span> &percnt;</span></p><p class="packet">RSSI dBm: <span id="rh1"></span></p>
+      <div class="card humidity" >
+        <span class="tmin">Min. </span><span class="tmin" id="tmin1"></span><span class="tmin">° C</span> - <span class="tmax">Max. </span><span class="tmax" id="tmax1"></span><span class="tmax">° C</span>
+        <h4 ><i class="fas fa-thermometer-half"></i> CTI 4° piso - TEMPERATURE</h4><p><span class="reading">
+          <span id="t1"></span> &deg;C</span>
+        </p>
+        <h4><i class="fas fa-tint"></i> CTI 4° piso - HUMIDITY</h4><p><span class="reading">
+          <span id="h1"></span> &percnt;</span></p><p class="packet">RSSI dBm: <span id="rh1"></span></p>
       </div>
-      <div class="card humidity">
-        <h4><i class="fas fa-thermometer-half"></i> PMCT 4° piso - TEMPERATURE</h4><p><span class="reading"><span id="t2"></span> &deg;C</span></p>
-        <h4><i class="fas fa-tint"></i> PMCT 4° piso - HUMIDITY</h4><p><span class="reading"><span id="h2"></span> &percnt;</span></p><p class="packet">RSSI señal dBm: <span id="rh2"></span></p>
+      <div class="card humidity" >
+        <span class="tmin">Min. </span><span class="tmin" id="tmin2"></span><span class="tmin">° C</span> - <span class="tmax">Max. </span><span class="tmax" id="tmax2"></span><span class="tmax">° C</span>
+        <h4 ><i class="fas fa-thermometer-half"></i> PMCT 4° piso - TEMPERATURE</h4><p><span class="reading">
+          <span id="t2"></span> &deg;C</span>
+        </p>
+        <h4><i class="fas fa-tint"></i> PMCT 4° piso - HUMIDITY</h4><p><span class="reading">
+          <span id="h2"></span> &percnt;</span></p><p class="packet">RSSI señal dBm: <span id="rh2"></span></p>
       </div>
-      <div class="card humidity">
-        <h4><i class="fas fa-thermometer-half"></i> PTTI2 2° piso - TEMPERATURE</h4><p><span class="reading"><span id="t3"></span> &deg;C</span></p>
-        <h4><i class="fas fa-tint"></i> PTTI2 2° piso - HUMIDITY</h4><p><span class="reading"><span id="h3"></span> &percnt;</span></p><p class="packet">RSSI señal dBm: <span id="rh3"></span></p>
+      <div class="card humidity" >
+        <span class="tmin">Min. </span><span class="tmin" id="tmin3"></span><span class="tmin">° C</span> - <span class="tmax">Max. </span><span class="tmax" id="tmax3"></span><span class="tmax">° C</span>
+        <h4><i class="fas fa-thermometer-half"></i> PTTI2 2° piso - TEMPERATURE</h4><p><span class="reading">
+          <span id="t3"></span> &deg;C</span>
+        </p>
+        <h4><i class="fas fa-tint"></i> PTTI2 2° piso - HUMIDITY</h4><p><span class="reading">
+          <span id="h3"></span> &percnt;</span></p><p class="packet">RSSI señal dBm: <span id="rh3"></span></p>
       </div>
     </div>
   </div>
@@ -65,6 +78,8 @@ if (!!window.EventSource) {
   document.getElementById("h"+obj.id).innerHTML = obj.humidity.toFixed(1); //un digito
   //document.getElementById("rt"+obj.id).innerHTML = obj.readingId;
   document.getElementById("rh"+obj.id).innerHTML = obj.readingId.toFixed(1);
+  document.getElementById("tmin"+obj.id).innerHTML = obj.min.toFixed(1);
+  document.getElementById("tmax"+obj.id).innerHTML = obj.max.toFixed(1);
  }, false);
 }
 </script>

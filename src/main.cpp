@@ -43,7 +43,7 @@ void setup() {
 void loop() {
   
   static unsigned long lastEventTime = millis();
-  static const unsigned long EVENT_INTERVAL_MS = 1000;
+  static const unsigned long EVENT_INTERVAL_MS = 2000;
   if ((millis() - lastEventTime) > EVENT_INTERVAL_MS) {
     events.send("ping",NULL,millis());
     lastEventTime = millis();
