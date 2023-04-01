@@ -37,7 +37,8 @@ void setup() {
   
   server.addHandler(&events);
   server.begin();
-  //InitWebSockets();
+  
+  
 }
 
 void loop() {

@@ -1,8 +1,7 @@
 // Variables globales del ESP32
 // Remplazar con las credenciales de la red (STATION)
-const char* ssid = "INFINITUMD378"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 
-const char* password = "Pm2Kj1Jg6j"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       
-
+const char* ssid = "INFINITUM59W1_2.4"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 
+const char* password = "unJvpTX5Vp"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       
 // ---------------------------------------------------
 // Definiciones
 // ---------------------------------------------------
@@ -77,9 +76,9 @@ bool normalizar=true;                               // Normalizar alarmas
 // Zona tiempos
 //-----------------------------------------------------------------
 
-long lastTime1 = 0;         // Variable para tiempo de envio por WS
-long lastTime2 = 0;         // variable para tiempo de envio de Alarmas
-long lastTime3 = 0;         // variable de tiempo para contador de alarmas
+long lastTime1 = 0;         // aun sin usar Variable para tiempo de envio por WS
+long lastTime2 = 0;         // a un sin usar variable para determinar si llego una señal
+long lastTime3 = 0;         // sin usar
 long lastTime4 = 0;         // Tiempo de activacion de la alarmas ya que podria ser falsa
 int mSerial = 5;      //tiempo en segundos que dura en volver a tranmitir
 //-----------------------------------------------------------------
