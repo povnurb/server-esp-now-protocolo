@@ -1,14 +1,8 @@
 // en este archivo estaran todas las librerias y archivos a inclurir
 #include <ArduinoJson.h>        //Manejador de archivos JSON
 #include <SPIFFS.h>             //Manejador de archivos
-#include <TimeLib.h> 
 #include <WiFi.h>
 #include <esp_now.h>
-//Libreria para el RTC del ESP32
-//#include <ESP32Time.h>
-//Libreria para NTP
-//#include <NTPClient.h>
-//#include <Tone32.h>
 /*Librerias agregadas para nuevas funcionalidades (LALO)*/
 #include <Adafruit_Sensor.h>    //by Adafruit
 #include <DHT.h>                //by Adafruit

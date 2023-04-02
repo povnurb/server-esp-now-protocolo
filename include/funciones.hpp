@@ -12,7 +12,6 @@ uint8_t temprature_sens_read();
 // -------------------------------------------------------------------
 // Declaración de funciones de request
 // -------------------------------------------------------------------
-void ProcessRequest(AsyncWebSocketClient * client, String request);
 //funciones
 /*
 MAC de comunicación ESP-NOW
