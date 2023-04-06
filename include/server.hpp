@@ -83,6 +83,7 @@ if (!!window.EventSource) {
   //console.log("new_readings", e.data);
   var obj = JSON.parse(e.data);
   console.log("Nuevas_Lecturas: ",obj.nameNodo);
+  console.log("Metodo: ",obj.modoSend);
   document.getElementById("t"+obj.id).innerHTML = obj.temperature.toFixed(1); //un digito
   document.getElementById("h"+obj.id).innerHTML = obj.humidity.toFixed(1); //un digito
   //document.getElementById("rt"+obj.id).innerHTML = obj.readingId;

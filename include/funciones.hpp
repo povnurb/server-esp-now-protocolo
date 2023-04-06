@@ -27,11 +27,12 @@ String obtenerWifiMac(){
     return String(WiFi.macAddress());
 }
 typedef struct struct_message {
+    String modoSend; //modo recibido
     int id;         //identificador de esp que envia
     String nameNodo; //nombre del nodo
     float temp;     //Temperatura de la sala
     float hum;      //humedad de la sala
-    float readingId;  //numero de envio ya no ahora es señal RSSI
+    int readingId;  //numero de envio ya no ahora es señal RSSI
     float min;
     float max;
 } struct_message;
@@ -55,6 +56,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   Serial.println(macStr);
   memcpy(&incomingReadings, incomingData, sizeof(incomingReadings));
   //todos estos valores los envia el transmisor
+  board["modoSend"] = String(incomingReadings.modoSend);
   board["id"] = incomingReadings.id;
   board["nameNodo"] = String(incomingReadings.nameNodo);
   board["temperature"] = incomingReadings.temp;
@@ -66,6 +68,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   //board["readingId"] = String(incomingReadings.readingId);
   //hay que serealizar para convertir el objeto en cadena
   Serial.println(incomingReadings.nameNodo);
+  Serial.println(incomingReadings.modoSend);
   serializeJson(board,jsonString);
   events.send(jsonString.c_str(), "new_readings", millis());
   

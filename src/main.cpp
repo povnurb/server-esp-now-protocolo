@@ -1,4 +1,4 @@
-/**
+/**Este sketch es el servidor Web
  * este es complemento de web_malla_sensores
  * hay que agregar si es posible un DNS
 */
@@ -76,14 +76,14 @@ void mostrarOled(){
 
 void loop() {
   
-  int lastEventTime = millis();
+  /*int lastEventTime = millis();
   int EVENT_INTERVAL_MS = 2000;
   if ((millis() - lastEventTime) > EVENT_INTERVAL_MS) {
     
     //events.send("ping",NULL,millis()); //solo envia un ping para mostrar que sigue conectado
     lastEventTime = millis();
     
-  }
+  }*/
   if ((millis() - lastTime3) > 1000){
     lastTime3 = millis();
     mostrarOled();
