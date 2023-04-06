@@ -1,6 +1,16 @@
+/**
+ * este es complemento de web_malla_sensores
+ * hay que agregar si es posible un DNS
+*/
 #include <Arduino.h>
 #include "includes.hpp" //todas las librerias y archivos
 #include "globales.hpp" //todas las variables globales
+// recuerda que hay que compartir la direccion MAC de este dispositivo
+//------------------------------------------------------------------------
+// Zona OLED
+// -----------------------------------------------------------------------
+Adafruit_SSD1306 OLED(SCREEN_WIDTH, SCREEN_HEIGHT);
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -16,6 +26,14 @@ void setup() {
   Serial.println(WiFi.localIP());
   Serial.print("Wi-Fi Channel: ");
   Serial.println(WiFi.channel());
+  //inicializamos el OLED
+  Serial.println("Inicializamos el display OLED");
+  if(!OLED.begin(SSD1306_SWITCHCAPVCC, 0x3C)){ // Dirección 0x3C
+    Serial.println("OLED no encontrado");
+    while(true);
+  }
+  OLED.clearDisplay();
+
   // Init ESP-NOW     
   setupEspnow(); //espnow.hpp
   // Once ESPNow is successfully Init, we will register for recv CB to
@@ -40,13 +58,34 @@ void setup() {
   
   
 }
+//---------------------------------------------------------------
+// OLED
+//---------------------------------------------------------------
+void mostrarOled(){
+   
+    OLED.clearDisplay();
+    OLED.setTextSize(1);
+    OLED.setTextColor(WHITE);
+    OLED.setCursor(0,0);
+    OLED.println("MAC: ");
+    OLED.println(obtenerWifiMac());
+    OLED.println("Nodos conectados: ");
+    OLED.display();
+    
+}
 
 void loop() {
   
-  static unsigned long lastEventTime = millis();
-  static const unsigned long EVENT_INTERVAL_MS = 2000;
+  int lastEventTime = millis();
+  int EVENT_INTERVAL_MS = 2000;
   if ((millis() - lastEventTime) > EVENT_INTERVAL_MS) {
-    events.send("ping",NULL,millis());
+    
+    //events.send("ping",NULL,millis()); //solo envia un ping para mostrar que sigue conectado
     lastEventTime = millis();
+    
+  }
+  if ((millis() - lastTime3) > 1000){
+    lastTime3 = millis();
+    mostrarOled();
   }
 }

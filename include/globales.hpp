@@ -1,7 +1,7 @@
 // Variables globales del ESP32
 // Remplazar con las credenciales de la red (STATION)
-const char* ssid = "INFINITUMD378"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 
-const char* password = "Pm2Kj1Jg6j"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       
+const char* ssid = "INFINITUMF69D"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 
+const char* password = "89r3X2Z7nJ"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       
 // ---------------------------------------------------
 // Definiciones
 // ---------------------------------------------------
@@ -61,12 +61,7 @@ boolean mqtt_status_send;           //Habilitar envio de estados
 //-----------------------------------------------------------------
 float TCPU, hum, tempC;                      // Temperatura del CPU en °C
 
-//------------------------------------------------------------------------
-// Zona OLED
-// -----------------------------------------------------------------------
 
-
-Adafruit_SSD1306 OLED(SCREEN_WIDTH, SCREEN_HEIGHT);
 //-----------------------------------------------------------------
 // Zona ALARMAS
 //-----------------------------------------------------------------
@@ -78,13 +73,12 @@ bool normalizar=true;                               // Normalizar alarmas
 
 long lastTime1 = 0;         // aun sin usar Variable para tiempo de envio por WS
 long lastTime2 = 0;         // a un sin usar variable para determinar si llego una señal
-long lastTime3 = 0;         // sin usar
+long lastTime3 = 0;         // para mostrar el display
 long lastTime4 = 0;         // Tiempo de activacion de la alarmas ya que podria ser falsa
 int mSerial = 5;      //tiempo en segundos que dura en volver a tranmitir
 //-----------------------------------------------------------------
 // Zona variables a enviar por esp now
 //-----------------------------------------------------------------
-String miWifiMac; 
 int chanel; //canal wifi
 //estructura del mensaje del esp now aun por agregar mas cosas
 

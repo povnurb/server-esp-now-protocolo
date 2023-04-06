@@ -28,6 +28,7 @@ String obtenerWifiMac(){
 }
 typedef struct struct_message {
     int id;         //identificador de esp que envia
+    String nameNodo; //nombre del nodo
     float temp;     //Temperatura de la sala
     float hum;      //humedad de la sala
     float readingId;  //numero de envio ya no ahora es señal RSSI
@@ -37,7 +38,7 @@ typedef struct struct_message {
 
 struct_message incomingReadings; //es una instancia de la estructura del mensaje que se recibe
 
-StaticJsonDocument<220> board; //verificar con mas capacidad
+StaticJsonDocument<500> board; //verificar con mas capacidad
 
 AsyncWebServer server(80);
 AsyncEventSource events("/events");
@@ -55,6 +56,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   memcpy(&incomingReadings, incomingData, sizeof(incomingReadings));
   //todos estos valores los envia el transmisor
   board["id"] = incomingReadings.id;
+  board["nameNodo"] = String(incomingReadings.nameNodo);
   board["temperature"] = incomingReadings.temp;
   board["humidity"] = incomingReadings.hum;
   board["readingId"] = incomingReadings.readingId; //aqui esta llegando la señal wiFi
@@ -63,10 +65,12 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   // la siguiente linea es para int (enteros)
   //board["readingId"] = String(incomingReadings.readingId);
   //hay que serealizar para convertir el objeto en cadena
+  Serial.println(incomingReadings.nameNodo);
   serializeJson(board,jsonString);
   events.send(jsonString.c_str(), "new_readings", millis());
   
   Serial.printf("Board ID %u: %u bytes\n", incomingReadings.id, len);
+  Serial.println("Nombre del nodo: "+ incomingReadings.nameNodo);
   Serial.printf("t value: %4.2f \n", incomingReadings.temp);
   Serial.printf("h value: %4.2f \n", incomingReadings.hum);
   Serial.printf("readingID value: %4.2f \n", incomingReadings.readingId);
@@ -77,3 +81,4 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   Serial.println();
   
 } 
+
