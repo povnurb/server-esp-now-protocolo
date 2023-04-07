@@ -1,7 +1,7 @@
 // Variables globales del ESP32
 // Remplazar con las credenciales de la red (STATION)
-const char* ssid = "INFINITUMF69D"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 
-const char* password = "89r3X2Z7nJ"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       
+const char* ssid = "INFINITUMF69D"; // "INFINITUM37032" //INFINITUMD378 //INFINITUM59W1_2.4 //INFINITUMF69D
+const char* password = "89r3X2Z7nJ"; // "comcoatza123"    // Pm2Kj1Jg6j //unJvpTX5Vp       // 89r3X2Z7nJ
 // ---------------------------------------------------
 // Definiciones
 // ---------------------------------------------------

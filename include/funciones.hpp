@@ -64,6 +64,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   board["readingId"] = incomingReadings.readingId; //aqui esta llegando la señal wiFi
   board["min"] = incomingReadings.min; //temperatura min
   board["max"] = incomingReadings.max; //temperatura maxima
+  board["tmp"] = 0;
   // la siguiente linea es para int (enteros)
   //board["readingId"] = String(incomingReadings.readingId);
   //hay que serealizar para convertir el objeto en cadena

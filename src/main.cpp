@@ -67,9 +67,12 @@ void mostrarOled(){
     OLED.setTextSize(1);
     OLED.setTextColor(WHITE);
     OLED.setCursor(0,0);
-    OLED.println("MAC: ");
     OLED.println(obtenerWifiMac());
-    OLED.println("Nodos conectados: ");
+    OLED.println();
+    OLED.println(password);
+    OLED.println();
+    OLED.setTextSize(2);
+    OLED.println(WiFi.localIP());
     OLED.display();
     
 }
